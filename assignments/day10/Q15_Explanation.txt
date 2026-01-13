@@ -1,0 +1,12 @@
+Answer to Question 15:
+
+(a) For three clients connecting almost simultaneously, the server accepts each connection and typically creates three Socket objects on the server side—one per accepted connection. The ServerSocket itself is separate.
+
+(b) Life cycle:
+ 1. ServerSocket listens on port 8080.
+ 2. Client connects -> ServerSocket.accept() returns a new Socket for that connection.
+ 3. Server spawns a handler (thread or task) to service that Socket.
+ 4. Server and client exchange data using InputStream/OutputStream.
+ 5. When communication finishes, both sides close their sockets; the server's handler terminates.
+
+Note: Many servers pool threads or use non-blocking IO, but the logical lifecycle is the same.
